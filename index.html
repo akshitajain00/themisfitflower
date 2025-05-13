@@ -7,31 +7,53 @@
   </head>
   <body>
     <a-scene 
-      mindar-image="imageTargetSrc: ./assets/targets.mind" 
+      mindar-image="imageTargetSrc: ./assets/targets1.mind" 
       vr-mode-ui="enabled: false" 
       device-orientation-permission-ui="enabled: false"
       embedded
       renderer="colorManagement: true, physicallyCorrectLights"
     >
-      <a-assets>
-        <!-- Add any assets here if needed -->
-      </a-assets>
+      <a-assets></a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-      <a-entity mindar-image-target="targetIndex: 0" open-url-on-detect>
-        <a-plane color="blue" opacity="0.5" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+      <!-- Target 0 -->
+      <a-entity mindar-image-target="targetIndex: 0" open-url-on-detect="url: https://www.akshita-jain.com/the-misfit-flower-intervention-1/">
+        <a-plane color="blue" opacity="0.5" position="0 0 0" height="0.552" width="1"></a-plane>
+      </a-entity>
+
+      <!-- Target 1 -->
+      <a-entity mindar-image-target="targetIndex: 1" open-url-on-detect="url: https://www.akshita-jain.com/the-misfit-flower-intervention-2/">
+        <a-plane color="red" opacity="0.5" position="0 0 0" height="0.552" width="1"></a-plane>
+      </a-entity>
+
+      <!-- Target 2 -->
+      <a-entity mindar-image-target="targetIndex: 2" open-url-on-detect="url: https://www.akshita-jain.com/the-misfit-flower-intervention-3/">
+        <a-plane color="green" opacity="0.5" position="0 0 0" height="0.552" width="1"></a-plane>
+      </a-entity>
+
+      <!-- Target 3 -->
+      <a-entity mindar-image-target="targetIndex: 3" open-url-on-detect="url: https://www.akshita-jain.com/the-misfit-flower-intervention-4/">
+        <a-plane color="yellow" opacity="0.5" position="0 0 0" height="0.552" width="1"></a-plane>
+      </a-entity>
+
+      <!-- Target 4 -->
+      <a-entity mindar-image-target="targetIndex: 4" open-url-on-detect="url: https://www.akshita-jain.com/the-misfit-flower-intervention-5/">
+        <a-plane color="purple" opacity="0.5" position="0 0 0" height="0.552" width="1"></a-plane>
       </a-entity>
     </a-scene>
 
     <script>
       AFRAME.registerComponent('open-url-on-detect', {
+        schema: {
+          url: { type: 'string' }
+        },
         init: function () {
-          let opened = false; // prevent multiple triggers
+          let opened = false;
           this.el.addEventListener('targetFound', () => {
             if (!opened) {
               opened = true;
-              window.location.href = "https://www.akshita-jain.com/the-misfit-flower-intervention-1/"; // or use window.open() if needed
+              window.location.href = this.data.url;
             }
           });
         }
@@ -39,3 +61,4 @@
     </script>
   </body>
 </html>
+
